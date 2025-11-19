@@ -1,0 +1,5 @@
+{
+  "name": "Driver Availability System",
+  "description": "A responsive driver availability management system for Admins and Drivers.",
+  "requestFramePermissions": []
+}
