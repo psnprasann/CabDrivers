@@ -79,14 +79,6 @@ export const DriverScreen = () => {
 
       <main className="max-w-3xl mx-auto px-4 py-6 space-y-6">
         
-        {/* Stats / Info Card */}
-        <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
-          <h2 className="font-bold text-slate-800 mb-2">Availability Status</h2>
-          <p className="text-slate-600 text-sm leading-relaxed">
-            Select multiple dates on the calendar below, then tap <span className="text-green-600 font-bold">Available</span> or <span className="text-rose-600 font-bold">Unavailable</span> to update your schedule.
-          </p>
-        </div>
-
         {/* Feedback Message */}
         {message && (
           <div className={`p-3 rounded-lg text-sm flex items-center animate-fade-in ${
