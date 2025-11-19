@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { User, AvailabilityMap, Role } from '../types';
+import { User, AvailabilityMap } from '../types';
 import { StorageService } from '../services/storageService';
 
 interface DriverContextType {
