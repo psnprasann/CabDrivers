@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['logo.svg'],
+      includeAssets: [], 
       manifest: {
         name: 'Check Driver',
         short_name: 'Check Driver',
