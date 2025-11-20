@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDriver } from '../contexts/DriverContext';
-import { Lock, User, Phone, Shield, Truck } from 'lucide-react';
+import { Lock, User, Phone, Shield, Truck, Loader2 } from 'lucide-react';
 
 export const LoginScreen = () => {
   const navigate = useNavigate();
-  const { login, registerDriver } = useDriver();
+  const { login, registerDriver, user, isLoading } = useDriver();
   
   const [isAdmin, setIsAdmin] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
@@ -16,6 +16,17 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Auto-redirect if already logged in
+  useEffect(() => {
+    if (!isLoading && user) {
+      if (user.role === 'ADMIN') {
+        navigate('/admin', { replace: true });
+      } else {
+        navigate('/driver', { replace: true });
+      }
+    }
+  }, [user, isLoading, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,6 +66,18 @@ export const LoginScreen = () => {
       setLoading(false);
     }
   };
+
+  // Show loading spinner while checking session to prevent form flash
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-blue-600">
+          <Loader2 size={32} className="animate-spin" />
+          <span className="font-medium text-sm">Verifying session...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
